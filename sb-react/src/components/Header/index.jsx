@@ -10,28 +10,28 @@ import { ProdCtx } from '../../context/ProductContext';
 
 const Header = ({likes}) => {
     const { user } = useContext(UserCtx);
-    const { search, text } = useContext(ProdCtx);
+    const {search} = useContext(ProdCtx);
     return (
         <>
-            <header>
-                <Logo/>
-                <Search />
-                <nav>
-                    <Link to="/">Главная</Link>
-                    <Link to="/catalog">Каталог</Link>
-                    <Link to="/cart">Корзина</Link>
-                    <Link to="/favorites">
-                        <img src={icFav} alt="Избранные товары"/>
-                        {likes}
-                    </Link>
-                    <Link to={user ? "/profile" : "/signin"}>
-                        <img src={icProf} alt="Войти в личный кабинет"/>
-                    </Link>
-                </nav>
-            </header>
-            <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
-                {text && search().length && search().map((el, i) => <Link key={i} to={"/product/" + el.id}>{el.name}</Link>)}
+        <header>
+            <Logo/>
+            <Search />
+            <nav>
+                <Link to="/">Главная</Link>
+                <Link to="/catalog">Каталог</Link>
+                <Link to="/cart">Корзина</Link>
+                <Link to="/favorites">
+                    <img src={icFav} alt="Избранные товары"/>
+                </Link>
+                <Link to={user ? "/profile" : "/signin"}>
+                    <img src={icProf} alt="Войти в личный кабинет"/>
+                </Link>
+            </nav>
+        </header>
+        <div style={{display: "flex", flexDirection: "column", gap: "20px"}}>
+                {search().length && search().map((el, i) => <Link key={i} to={"/product/" + el.id}>{el.name}</Link>)}
             </div>
+
         </>
     )
 }
